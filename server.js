@@ -11,8 +11,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 
-app.get('/', (req, res) => {
-  res.render('home.ejs',{ title: 'Home' });
+app.get('/services', (req, res) => {
+  res.render('services', { title: 'Services' });
 });
 
 app.get('/about', (req, res) => {
@@ -23,12 +23,13 @@ app.get('/project', (req, res) => {
   res.render('project', { title: 'Project' });
 });
 
-app.get('/services', (req, res) => {
-  res.render('services', { title: 'Services' });
-});
 
 app.get('/contact', (req, res) => {
   res.render('contact', { title: 'Contact' });
+});
+
+app.get('/', (req, res) => {
+  res.render('home.ejs',{ title: 'Home' });
 });
 
 app.listen(3000, () => {
