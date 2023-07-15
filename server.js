@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const collection = require("mongoDB");
 
 app.set('views', path.join(__dirname, './views'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 app.set('view engine', 'ejs');
+app.use(express.urlencoded({extended:false}));
 
 //middleware and static files 
 app.use(express.static('public'));
@@ -16,15 +18,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-  res.render('about.ejs', { title: 'About Us' });
-});
-
-app.get('/project', (req, res) => {
-  res.render('project', { title: 'Project' });
+  res.render('about', { title: 'About Us' });
 });
 
 app.get('/services', (req, res) => {
-  res.render('services', { title: 'Services' });
+  res.render('services', { title: 'About Us' });
 });
 
 app.get('/contact', (req, res) => {
@@ -44,7 +42,13 @@ app.post("/login",async (req,res)=>{
 })
 
 app.post("/signup",async (req,res)=>{
-  
+  const data={
+    name:req.body.name,
+    name:req.body.password
+  }
+  await collection.insertMany([data])//create a data and fill it in your collection
+  res.render( "home" );
+
 })
 
 app.listen(3000, () => {
