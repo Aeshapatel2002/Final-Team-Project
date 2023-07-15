@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title><%= title %></title>
+</head>
+<body>
+    
+    <%- include('partials/nav.ejs') -%>
+    <main>
+        <h1 class="visually-hidden">About Us</h1>
+      
+        <div class="px-4 py-5 my-5 text-center">
+          <img class="d-block mx-auto mb-4" src="/images/about-eye-studio.jpg" alt="About World Eye Studio" width="mx-auto" height="400px">
+          <h1 class="display-5 fw-bold text-body-emphasis">About The World Eye Studio</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">World Eye Studio, founded in 2003, has been the vanguard of exceptional eye care for two decades. With our dedicated team of highly skilled optometrists, we have successfully provided a comprehensive approach to eye health for thousands of patients.</p>
+
+            <p class="lead mb-4">Our belief in the value of trust and personal attention defines our exceptional service. We strive to educate our patients, believing that knowledge and understanding are the pillars of lifelong eye health.</p>
+
+            <p class="lead mb-4">Committed to innovation, we continuously update our technology and methods to ensure our patients have access to the best care available. We take immense pride in the advancements we have made in eye care technology, and are committed to leading the way in eye health innovation. Here at World Eye Studio, your vision is our mission.</p>
+
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                <a href="/contact" class="btn btn-outline-secondary btn-lg px-4">Contact Us</a>
+              </div>
+          </div>
+        </div>
+              
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
