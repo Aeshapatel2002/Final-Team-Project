@@ -31,6 +31,22 @@ app.get('/contact', (req, res) => {
   res.render('contact', { title: 'Contact' });
 });
 
+app.get('/login',(req,res)=>{
+  res.render('login',{title: 'LogIn'});
+});
+
+app.get('/sign-up',(req,res)=>{
+  app.render('signup',{title: 'Sign-Up'});
+});
+
+app.post("/login",async (req,res)=>{
+
+})
+
+app.post("/signup",async (req,res)=>{
+  
+})
+
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
 });

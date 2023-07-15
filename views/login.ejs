@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('partials/nav.ejs') -%>
+
+    <h2>Log In</h2>
+
+    <form action="login.ejs" method="post">
+        <input type="text" name = "name" placeholder="UserName">
+        <input type="password" name = "Password" placeholder="Password">
+        <input type="submit" >
+    </form>
+</body>
+</html>
