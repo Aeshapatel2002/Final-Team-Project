@@ -1,23 +1,51 @@
 const mongoose = require('mongoose');
-//setting Up mongoDB
-mongoose.connect("mongodb://localhost:27017/LoginSignup")
-.then(()=>{
+
+// Setting up MongoDB
+const connectDB = async () => {
+  try {
+    await mongoose.connect("mongodb://127.0.0.1:27017/test", {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+      });
     console.log("mongodb connected");
-})
-.catch(()=>{
-   console.log("Failed to connect to Database"); 
+  } catch (error) {
+    console.error("Failed to connect to Database", error);
+    process.exit(1); // Exit process with failure
+  }
+};
+
+// User Schema
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
 });
 
-const LogInSchema = new mongoose.Schema({
-    name: {type:String,
-    require:true},
-
-    password: {
-        type : String , require: true
+// Blog Schema
+const BlogSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
     }
+});
 
+// Creating models for the collections
+const User = mongoose.model("users", UserSchema); // Changed collection name to 'users'
+const Blog = mongoose.model("blogs", BlogSchema); // New collection 'blogs'
 
-})
-
-const collection = new mongoose.model("Collection_01",LogInSchema)
-module.exports=collection;
+// Export the models and the connectDB function
+module.exports = { User, Blog, connectDB };
