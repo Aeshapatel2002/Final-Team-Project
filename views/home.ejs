@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <title><%= title %></title>
+    <title>
+        <%= title %>
+    </title>
 </head>
+
 <body>
-    
+
     <%- include('partials/nav.ejs') -%>
-    <main>
-        <h1 class="visually-hidden">Heroes examples</h1>
-      
-        <div class="px-4 py-5 my-5 text-center">
-          <img class="d-block mx-auto mb-4" src="/images/female-eye-doctor-eye-exam.jpg" alt="" width="mx-auto" height="400px">
-          <h1 class="display-5 fw-bold text-body-emphasis">The World Eye Studio</h1>
-          <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">At World Eye Studio, it’s our mission to provide compassionate and personalized eye care for every patient. We provide patients with the information they need to involve them in maintaining their health, and pride ourselves on providing the right amount of time and attention for each visit.<br>We maintain the highest standard of service, education, and technology to protect your eyes and keep them healthy for life.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4"><a href="/about">Read More</a></button>
-            </div>
-          </div>
-        </div>
+        <main>
+            <h1 class="visually-hidden">Heroes examples</h1>
 
-        <!-- Display all blogs -->
-        <div class="container">
-          <div class="row">
-            <% blogs.forEach(blog => { %>
-              <div class="col-md-4">
-                <div class="card mb-4">
-                  <div class="card-body">
-                    <h5 class="card-title"><%= blog.title %></h5>
-                    <p class="card-text"><%= blog.content.substring(0, 100) %>...</p>
-                    <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read More</a>
-                  </div>
+            <div class="px-4 py-5 my-5 text-center">
+                <img class="d-block mx-auto mb-4" src="/images/Property Listing.jpg" alt="" width="mx-auto" height="400px">
+                <h1 class="display-5 fw-bold text-body-emphasis">GOOD HOMES : Propert Listings!</h1>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-4">"Good Homes" is a comprehensive online property listing platform designed to connect prospective buyers and renters with their ideal homes. With a user-friendly interface and advanced search features, Good Homes offers a wide range of properties including houses, apartments, condos, and land for sale or rent. Through high-quality images, detailed property descriptions, and interactive maps, users can explore properties in various locations, sizes, and budgets. The platform provides an efficient and convenient way to browse, compare, and select properties, making the process of finding a perfect home simpler and more enjoyable. Whether looking for a spacious family house, a cozy apartment, or a lucrative investment opportunity, Good Homes empowers users to make informed decisions and find their dream property with ease.
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                        <button type="button" class="btn btn-outline-secondary btn-lg px-4 read-more-home"><a href="/about">Read More</a></button>
+                    </div>
                 </div>
-              </div>
-            <% }) %>
-          </div>
-        </div>
-              
-      </main>
+            </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-</body>
-</html>
+        
