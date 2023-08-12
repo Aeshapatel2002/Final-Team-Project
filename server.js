@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require("body-parser");
 const session = require('express-session');
 const app = express();
 const path = require('path');
@@ -8,7 +9,7 @@ app.set('views', path.join(__dirname, './views'));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 app.set('view engine', 'ejs');
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
   secret: 'mysecretkey',
@@ -22,6 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+
 // Middleware to protect routes
 function ensureAuthenticated(req, res, next) {
   if (req.session.user) {
@@ -31,7 +36,7 @@ function ensureAuthenticated(req, res, next) {
   }
 }
 
-//middleware and static files 
+//middleware and static files
 app.use(express.static('public'));
 
 
@@ -44,23 +49,49 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About Us' });
 });
 
-app.get('/services', (req, res) => {
-  res.render('services', { title: 'About Us' });
+app.get('/services', ensureAuthenticated, (req, res) => {
+  const services = [{
+    _id: "1",
+    image: "/images/Listing 1.png",
+    title: "$1,200,000",
+    description: "A Giant Plot of land right in the heart of Ottawa."
+  },
+  {
+    _id: "2",
+    image: "/images/Listing 2.png",
+    title: "$750,000",
+    description: "A Family House in Texas."
+  },
+  {
+    _id: "3",
+    image: "/images/Listing 3.png",
+    title: "$185,000",
+    description: "Single Home with, an affordable option!"
+  },
+  {
+    _id: "4",
+    image: "/images/Listing 4.png",
+    title: "$50,000",
+    description: "An affordable plot of land."
+  }
+    // Add more service objects here
+  ];
+  res.render('services', { title: 'About Us', services: services });
 });
 
 app.get('/contact', (req, res) => {
   res.render('contact', { title: 'Contact' });
 });
 
-app.get('/login',(req,res)=>{
-  res.render('login',{title: 'LogIn'});
+app.get('/login', (req, res) => {
+  res.render('login', { title: 'LogIn' });
 });
 
-app.get('/sign-up',(req,res)=>{
-  res.render('signup',{title: 'Sign-Up'});
+app.get('/sign-up', (req, res) => {
+  res.render('signup', { title: 'Sign-Up' });
 });
 
-app.post("/login",async (req,res)=>{
+app.post("/login", async (req, res) => {
   const { name, password } = req.body;
   const user = await User.findOne({ name });
   if (user && user.password === password) { // Simple password check, consider using bcrypt in production
@@ -71,10 +102,10 @@ app.post("/login",async (req,res)=>{
   }
 });
 
-app.post("/signup",async (req,res)=>{
-  const data={
-    name:req.body.name,
-    password:req.body.password
+app.post("/signup", async (req, res) => {
+  const data = {
+    name: req.body.name,
+    password: req.body.password
   }
   await User.create(data); // Create a new user
   res.redirect('/login'); // Redirect to login
@@ -99,10 +130,15 @@ app.get('/create-blog', ensureAuthenticated, (req, res) => {
   res.render('create-blog', { title: 'Create Blog' });
 });
 
+
 app.post('/create-blog', ensureAuthenticated, async (req, res) => {
+  const selectedService = req.body.service;
+  console.log(selectedService.content)
   const data = {
-    title: req.body.title,
-    content: req.body.content,
+    title: selectedService.title,
+    id: selectedService._id,
+    content: selectedService.description,
+    image: selectedService.image,
     author: req.session.user._id
   }
   await Blog.create(data); // Create a new blog

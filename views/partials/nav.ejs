@@ -1,28 +1,26 @@
 <div class="container">
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <div class="col-md-3 mb-2 mb-md-0">
-      <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-        <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-        <img src="/images/modified.png" alt="logo" style="width:70px;">
-    </div>
+      <div class="col-md-3 mb-2 mb-md-0 d-flex" style="width:100px ">
+          <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+          <img src="/images/GOOD HOMES.png" alt="logo" style="width:70px;">
+      </div>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a href="/" class="nav-link px-2 ">Home</a></li>
-      <li><a href="/about" class="nav-link px-2">About Us</a></li>
-      <li><a href="/services" class="nav-link px-2">Services</a></li>
-      <li><a href="/contact" class="nav-link px-2">Contact</a></li>
-      <li><a href="/create-blog" class="nav-link px-2">Create Blog</a></li>
-      <li><a href="/my-blogs" class="nav-link px-2">My Blogs</a></li>
-    </ul>
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+          <li><a href="/" class="nav-link px-2">Home</a></li>
+          <li><a href="/about" class="nav-link px-2">About Us</a></li>
+          <li><a href="/services" class="nav-link px-2">Listings</a></li>
+          <li><a href="/contact" class="nav-link px-2">Contact</a></li>
+          <!-- <li><a href="/create-blog" class="nav-link px-2">Create Blog</a></li> -->
+          <li><a href="/my-blogs" class="nav-link px-2">My Cart</a></li>
+      </ul>
+      <div class="col-md-3 text-end">
+          <% if (user) { %>
+              <a class="btn btn-outline-primary me-2" href="/signout">Sign Out</a>
+              <% } else { %>
+                  <a class="btn btn-outline-primary me-2 home-login" href="/login">Log-In</a>
+                  <a class="btn btn-outline-primary me-2 home-sign" href="/sign-up">Sign-Up</a>
+                  <% } %>
+      </div>
 
-    <div class="col-md-3 text-end">
-      <% if (user) { %>
-        <a class="btn btn-outline-primary me-2" href="/signout">Sign Out</a>
-      <% } else { %>
-        <a class="btn btn-outline-primary me-2" href="/login">Log-In</a>
-        <a class="btn btn-outline-primary me-2" href="/sign-up">Sign-Up</a>
-      <% } %>
-    </div>
-    
   </header>
 </div>
