@@ -4,6 +4,8 @@ const session = require('express-session');
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
+const RedisStore = require('connect-redis')(session);
+const redisClient = require('redis').createClient();
 
 app.set('views', path.join(__dirname, './views'));
 app.use(express.static(path.join(__dirname, '../public')));
@@ -12,6 +14,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
+  store: new RedisStore({ client: redisClient }),
   secret: 'mysecretkey',
   resave: false,
   saveUninitialized: true,
